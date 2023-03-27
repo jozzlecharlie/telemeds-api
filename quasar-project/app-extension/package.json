@@ -1,0 +1,22 @@
+{
+  "name": "quasar-app-extension-telemedicine",
+  "version": "0.0.1",
+  "description": "An Quasar app extension",
+  "author": "Jozzle Charlie M. Salacup",
+  "license": "MIT",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "homepage": "",
+  "dependencies": {
+    "quasar-ui-telemedicine": "latest"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  }
+}
