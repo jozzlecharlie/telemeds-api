@@ -8,18 +8,25 @@ use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class Htypser extends Model
 {
+    // use HasFactory;
     use HasFactory, FilterQueryString;
-
+   
     protected $table = 'htypser';
 
-    
     protected $primaryKey = 'tscode';
 
     public $incrementing = false;
 
     public $timestamps = false;
 
-    public $filters = [
+    public $fillable = [
+        'tscode',
+        'tsdesc',
+        'tsstat',
+        'tstype',
+    ];
+
+    public $filter = [
         'tscode',
         'tsstat',
         'tstype',
