@@ -1,4 +1,4 @@
-     {
+{
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "league/flysystem": "^3.8.0",
-        "league/mime-type-detection": "^1.0.0"
+        "league/mime-type-detection": "^1.0.0",
+        "mehradsadeghi/laravel-filter-querystring": "^1.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

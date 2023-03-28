@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('hperson', function (Blueprint $table) {
             $table->id();
-            $table->string('lname');
-            $table->string('fname');
-            $table->string('mname');
-            $table->string('suffix')->nullable();
-            
+            $table->string('hpercode');
+            $table->string('hpatcode');
+            $table->string('patlast');
+            $table->string('patfirst');
+            $table->string('patmiddle')->nullable();
+            $table->string('patsuffix')->nullable();
+            $table->date('patbdate');
+            $table->string('patsex');
             $table->timestamps();
         });
     }

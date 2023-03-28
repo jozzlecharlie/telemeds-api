@@ -30,9 +30,15 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
+                Route::fallback(function (){
+                    return response()->json('Not found', 404);
+                });
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+                Route::fallback(function(){
+                    return response()->json('Not found!!!', 404);
+                });
+            // Route::middleware('web')
+            //     ->group(base_path('routes/web.php'));
         });
     }
 
