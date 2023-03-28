@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Hpersonal extends Model
 {
     use HasFactory;
+   
     protected $table = 'hpersonal';
 
     protected $primaryKey = 'employeeid';
 
     public $incrementing = false;
 
+    public $timestamps = false;
+    
     protected $fillable = [
         'employeeid',
         'lastname',
@@ -23,7 +26,6 @@ class Hpersonal extends Model
         'deptcode',
     ];
 
-    public $timestamps = false;
 
     public function htypser()
     {

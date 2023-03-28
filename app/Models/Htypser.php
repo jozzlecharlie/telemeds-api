@@ -26,7 +26,7 @@ class Htypser extends Model
         'tstype',
     ];
 
-    public $filter = [
+    public $filters = [
         'tscode',
         'tsstat',
         'tstype',
