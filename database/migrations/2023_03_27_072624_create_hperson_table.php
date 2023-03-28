@@ -12,14 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hperson', function (Blueprint $table) {
-            $table->id();
-            $table->string('hpercode', 15);
+            $table->string('hpercode')->primary();
             $table->string('patlast');
             $table->string('patfirst');
             $table->string('patmiddle')->nullable();
             $table->date('patbdate');
             $table->string('patsex');
-            $table->timestamps();
         });
     }
 

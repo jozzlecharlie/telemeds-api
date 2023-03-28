@@ -19,16 +19,12 @@ class Hopdlog extends Model
         'enccode',
         'hpercode',
         'opddate',
-        'opdtime',
-        'tacode',
         'tscode',
         'opdstat',
         'newold',
         'filling',
         'datetriage',
         'patage',
-        'patagemo',
-        'patagedy',
         'disinstruc',
     ];
 

@@ -9,11 +9,13 @@ use App\Models\Hperson;
 use Illuminate\Support\Facades\DB;
 
 trait EncounterGenerator {
+    // generate encounter code (enccode)
     protected function generateEncounterCode($hpercode, $encdate): string
     {
-        return "OPD" . ltrim($hpercode, '0') . Carbon::parse($encdate)->format('MdYHis');
+        return 'OPD'. ltrim($hpercode, '0') . Carbon::parse($encdate)->format('MdYHis');
     }
 
+    // generate encounter (Henctr, Hopdlog)
     protected function generateEncounter($hpercode, $tscode, $priority, $teleconsultation)
     {
         try {
@@ -33,25 +35,19 @@ trait EncounterGenerator {
             Henctr::create([
                 'enccode' => $enccode,
                 'hpercode' => $hpercode,
-                'encdate' => $encdate,
-                'enctime' => $encdate,
-                'toecode' => 'OPD',
+                'encdate' => $encdate
             ]);
 
             Hopdlog::create([
                 'enccode' => $enccode,
                 'hpercode' => $hpercode,
                 'opddate' => $encdate,
-                'opdtime' => $encdate,
-                'tacode' => 'SERVI',
                 'tscode' => $tscode,
                 'opdstat' => 'A',
                 'newold' => Hopdlog::where('hpercode', $hpercode)->count() > 0 ? 'O' : 'N',
                 'filling' => $filling,
                 'datetriage' => $encdate,
                 'patage' => $age['year'],
-                'patagemo' => $age['month'],
-                'patagedy' => $age['day'],
                 'disinstruc' => $disinstruc,
             ]);
 
@@ -64,18 +60,18 @@ trait EncounterGenerator {
         }
     }
 
+    // compute age in years, months, days
     protected function computeAgeInYearsMonthDay($hpercode): array
     {
-        $hperson = Hperson::find($hpercode);
-        $age = Carbon::parse($hperson->patbdate)->diff(Carbon::now());
-        $ageInYears = $age->y;
-        $ageInMonths = $age->m;
-        $ageInDays = $age->d;
+        $person = Hperson::find($hpercode);
+        $birthdate = Carbon::parse($person->bdate);
+        $now = Carbon::now();
+        $age = $birthdate->diff($now);
 
         return [
-            'year' => $ageInYears,
-            'month' => $ageInMonths,
-            'day' => $ageInDays,
+            'year' => $age->y,
+            'month' => $age->m,
+            'day' => $age->d,
         ];
     }
 }
