@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hpersonal extends Model
 {
     use HasFactory;
-   
+
     protected $table = 'hpersonal';
 
     protected $primaryKey = 'employeeid';
@@ -16,7 +16,7 @@ class Hpersonal extends Model
     public $incrementing = false;
 
     public $timestamps = false;
-    
+
     protected $fillable = [
         'employeeid',
         'lastname',
@@ -26,10 +26,15 @@ class Hpersonal extends Model
         'deptcode',
     ];
 
+    protected $with = ['htypser'];
 
     public function htypser()
     {
-        return $this->belongsTo(Htypser::class, 'deptcode', 'tscode');
+        return $this->belongsTo(
+            Htypser::class,
+            'deptcode',
+            'tscode'
+        );
     }
 
     public function user()

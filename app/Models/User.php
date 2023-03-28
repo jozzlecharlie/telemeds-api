@@ -43,8 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with =['hpersonal'];
     public function hpersonal()
     {
-        return $this->belongsTo(Hpersonal::class, 'employeeid', 'employeeid');
+        return $this->belongsTo(
+            Hpersonal::class,
+             'employeeid',
+              'employeeid'
+            );
     }
 }

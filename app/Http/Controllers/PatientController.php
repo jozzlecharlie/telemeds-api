@@ -7,9 +7,15 @@ use App\Models\Hperson;
 
 class PatientController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $all = Hperson::filter()->get();
-        return response()->json($all);
+        if(!isset($request->limit)) {
+            return response()->json(
+                'Limit is required', 400
+            );
+        }
+
+        $patients = Hperson::filter()->get();
+        return response()->json($patients);
     }
 }

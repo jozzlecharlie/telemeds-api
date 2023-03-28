@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            ServiceSeeder::class,
-        ]);
+        // $this->call([
+        //     ServiceSeeder::class,
+        // ]);
         // \App\Models\User::factory(100)->create();
-
+        // \App\Models\Hperson::factory(100)->create();
         // \App\Models\User::factory()->create([
         //     'email' => 'admin@demo.com',
         //     'password' => bcrypt('password'),
@@ -25,14 +25,19 @@ class DatabaseSeeder extends Seeder
         //     ])->employeeid,
         // ]);
 
-        \App\Models\Hperson::factory(100)->create();
+        //  \App\Models\Hperson::factory(100)->create();
 
-        // \Models\Hperson::factory(100)->create();
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+
+        $this->call([
+            EncounterSeeder::class,
+        ]);
     }
 }

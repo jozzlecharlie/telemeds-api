@@ -19,28 +19,33 @@ use App\Http\Controllers\PatientController;
 
 
 Route::post('/auth/login', LoginController::class);
-Route::get('/services', ServiceController::class);
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
+
 
  Route::middleware('auth:sanctum')->group(function () {
-//     Route::get('/user', function (Request $request) {
-//         return $request->user();
-//       });
- 
+    Route::get('/services', ServiceController::class);
+
+    Route::prefix('auth')->group(function(){
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+          });
+
+          Route::post('logout', function (Request $request) {
+            $request->user()->currentAccessToken()->delete();
+            return response()->json([
+                'message' => 'Logged out'
+            ]);
+        });
+     });
      Route::get('/patients', PatientController::class);
- });
-
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/auth/user', function (Request $request) {
-        return $request->user();
-    });
-
-    Route::post('/auth/logout', function (Request $request) {
-        $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'Logged out']);
-    });
 });
+
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::get('/auth/user', function (Request $request) {
+//         return $request->user();
+//     });
+
+
+// });
+

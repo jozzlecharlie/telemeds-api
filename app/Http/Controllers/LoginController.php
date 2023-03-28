@@ -15,24 +15,19 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $validated['email'])->first();
+        $user = User::where('email', $validated['email'])
+            ->first();
 
-        // if(!$user){
-        //     return response()->json([
-        //         'message' => 'User not found'
-        //     ], 404);
-        // }
-
-        if ($user && Hash::check($validated['password'], $user->password)) {
-            $user->token = $user->createToken('auth_token')->plainTextToken;
-            return response()->json($user);
+        if(!$user){
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
         }
 
-        if(!Hash::check($validated['password'],$user->password)){
-                 return response()->json(['message' => 'Invalid password'], 401);
+        if (!Hash::check($validated['password'], $user->password)) {
+            return response()->json(['error' => 'Invalid Password'], 401);
         }
 
-        //  return response()->json(['error' => 'Invalid credentials'], 401);
         $token = $user->createToken('auth_token')
             ->plainTextToken;
 
