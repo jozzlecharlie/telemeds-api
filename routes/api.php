@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\EncounterController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,8 +39,28 @@ Route::post('/auth/login', LoginController::class);
             ]);
         });
      });
+
+
+
+     Route::prefix('encounters')->group(function(){
+        Route::post('/', [EncounterController::class,'generate']);
+        Route::get('/', [EncounterController::class,'index']);
+    });
+
      Route::get('/patients', PatientController::class);
+    //  Route::post('/encounters', [EncounterController::class, 'generate']);
 });
+
+
+
+
+      Route::post('logout', function (Request $request) {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message' => 'Logged out'
+        ]);
+    });
+
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::get('/auth/user', function (Request $request) {

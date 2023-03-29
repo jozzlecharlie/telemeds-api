@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
         ]);
 
-        \App\Models\User::factory(100)->create();
+        \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'email' => 'admin@demo.com',
